@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
 
-    public static final By USERNAME_INPUT = By.name("user-name");
-    public static final By PASSWORD_INPUT = By.name("password");
-    public static final By LOGIN_BTN = By.name("login-button");
+    private static final By USERNAME_INPUT = By.name("user-name");
+    private static final By PASSWORD_INPUT = By.name("password");
+    private static final By LOGIN_BTN = By.name("login-button");
 
     private final WebDriver browser;
 

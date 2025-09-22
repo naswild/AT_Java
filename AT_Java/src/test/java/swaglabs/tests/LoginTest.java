@@ -1,10 +1,10 @@
 package swaglabs.tests;
 
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import swaglabs.parent.BaseTest;
 
+import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest {
         boolean isProductDisplayed = browser.findElement(By.xpath("//*[@data-test='title']"))
                 .isDisplayed();
 
-        Assert.assertTrue(isProductDisplayed);
+        assertTrue(isProductDisplayed);
     }
 
     @Test

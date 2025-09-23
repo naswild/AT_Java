@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest {
                 "Название заголовка не соответствует ожидаемому");
     }
 
-    @Test
+    @Test(description = "Проверка сообщения об ошибке для заблокированного пользователя")
     public void checkLoginWithLockedOutUser() {
         loginPage.open();
         loginPage.login("locked_out_user", "secret_sauce");

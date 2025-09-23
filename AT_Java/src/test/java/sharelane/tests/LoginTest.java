@@ -24,10 +24,11 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void checkErrorLogin() {
+        WebDriverWait wait =  new WebDriverWait(browser, Duration.ofSeconds(10));
         loginPage.open();
         loginPage.loginThruZip("12");
         WebElement errorMessage = browser.findElement(By.cssSelector(".error_message"));
-        new WebDriverWait(browser, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(errorMessage));
+        wait.until(ExpectedConditions.visibilityOf(errorMessage));
         assertEquals(errorMessage.getText(), "Oops, error on page. ZIP code should have 5 digits");
     }
 }

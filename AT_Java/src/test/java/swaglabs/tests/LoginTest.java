@@ -1,5 +1,6 @@
 package swaglabs.tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import swaglabs.parent.BaseTest;
 
@@ -17,24 +18,19 @@ public class LoginTest extends BaseTest {
                 "Название заголовка не соответствует ожидаемому");
     }
 
-    @Test(description = "Проверка сообщения об ошибке для заблокированного пользователя")
-    public void checkLoginWithLockedOutUser() {
-        loginPage.open();
-        loginPage.login("locked_out_user", "secret_sauce");
-        assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Sorry, this user has been locked out.");
+    @DataProvider
+    public Object[][] loginData() {
+        return new Object[][] {
+                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
+                {"", "secret_sauce", "Epic sadface: Username is required"},
+                {"standard_user", "", "Epic sadface: Password is required"}
+        };
     }
 
-    @Test(description = "Проверка сообщения об ошибке при пустом поле username")
-    public void checkLoginWithoutUsername() {
+    @Test(description = "Проверка сообщения об ошибке", dataProvider = "loginData")
+    public void checkIncorrectLogin(String username, String password, String errorMsg) {
         loginPage.open();
-        loginPage.login("", "secret_sauce");
-        assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Username is required");
-    }
-
-    @Test(description = "Проверка сообщения об ошибке при пустом поле password")
-    public void checkLoginWithoutPassword() {
-        loginPage.open();
-        loginPage.login("standard_user", "");
-        assertEquals(loginPage.checkErrorMsg(), "Epic sadface: Password is required");
+        loginPage.login(username, password);
+        assertEquals(loginPage.getErrorMsg(), errorMsg);
     }
 }

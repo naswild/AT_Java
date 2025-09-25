@@ -24,12 +24,24 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String username, String password) {
+        fillUsernameField(username);
+        fillPasswordField(password);
+        clickSubmit();
+    }
+
+    public void fillUsernameField(String username) {
         driver.findElement(USERNAME_INPUT).sendKeys(username);
+    }
+
+    public void fillPasswordField(String password) {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
+    }
+
+    public void clickSubmit() {
         driver.findElement(LOGIN_BTN).click();
     }
 
-    public String checkErrorMsg() {
+    public String getErrorMsg() {
         return wait.until(
                 ExpectedConditions.visibilityOfElementLocated(ERROR)).getText();
     }

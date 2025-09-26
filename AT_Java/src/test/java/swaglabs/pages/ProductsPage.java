@@ -8,6 +8,9 @@ public class ProductsPage extends BasePage {
 
     private static final String ADD_TO_CART_BTN_PATTERN =
             "//*[text() = '%s']//ancestor::div[@class = 'inventory_item']//child::button[text() = 'Add to cart']";
+
+    private static final By ADD_TO_CART_BTN = By.xpath("//*[text()='Add to cart']");
+    private static final By CART_BADGE = By.xpath("//*[@data-test = 'shopping-cart-badge']");
     private final By title = By.xpath("//*[@data-test='title']");
     private final By title2 = By.xpath("//*[text()='Products']");
 
@@ -24,8 +27,17 @@ public class ProductsPage extends BasePage {
                 ExpectedConditions.visibilityOfElementLocated(title2)).isDisplayed();
     }
 
-    public void addToCard(String goodsName) {
+    public void addToCart(String goodsName) {
         By addToCart = By.xpath(ADD_TO_CART_BTN_PATTERN.formatted(goodsName));
         driver.findElement(addToCart).click();
+    }
+
+    public void addToCart(int goodsIndex) {
+        driver.findElements(ADD_TO_CART_BTN).get(goodsIndex).click();
+    }
+
+    public String getNumberCart() {
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(CART_BADGE)).getText();
     }
 }

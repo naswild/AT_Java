@@ -28,18 +28,18 @@ public class ProductsPage extends BasePage {
                 ExpectedConditions.visibilityOfElementLocated(title2)).isDisplayed();
     }
 
-    public void addToCartByProductName(String goodsName) {
-        By addToCart = By.xpath(ADD_TO_CART_BTN_PATTERN.formatted(goodsName));
+    public void addToCart(String productName) {
+        By addToCart = By.xpath(ADD_TO_CART_BTN_PATTERN.formatted(productName));
         driver.findElement(addToCart).click();
     }
 
-    public void addToCartByProductIndex(int goodsIndex) {
-        driver.findElements(ADD_TO_CART_BTN).get(goodsIndex).click();
+    public void addToCart(int productIndex) {
+        driver.findElements(ADD_TO_CART_BTN).get(productIndex).click();
     }
 
-    public void addProductsToCart(int goodsNumber) {
-        for (int i = 0; i < goodsNumber; i++) {
-            this.addToCartByProductIndex(0);
+    public void addProductsToCart(int productNumber) {
+        for (int i = 0; i < productNumber; i++) {
+            this.addToCart(0);
         }
     }
 

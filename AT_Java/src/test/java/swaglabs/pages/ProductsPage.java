@@ -11,6 +11,7 @@ public class ProductsPage extends BasePage {
 
     private static final By ADD_TO_CART_BTN = By.xpath("//*[text()='Add to cart']");
     private static final By CART_BADGE = By.xpath("//*[@data-test = 'shopping-cart-badge']");
+    private static final By CART_LINK = By.xpath("//*[@data-test='shopping-cart-link']");
     private final By title = By.xpath("//*[@data-test='title']");
     private final By title2 = By.xpath("//*[text()='Products']");
 
@@ -27,17 +28,27 @@ public class ProductsPage extends BasePage {
                 ExpectedConditions.visibilityOfElementLocated(title2)).isDisplayed();
     }
 
-    public void addToCart(String goodsName) {
-        By addToCart = By.xpath(ADD_TO_CART_BTN_PATTERN.formatted(goodsName));
+    public void addToCart(String productName) {
+        By addToCart = By.xpath(ADD_TO_CART_BTN_PATTERN.formatted(productName));
         driver.findElement(addToCart).click();
     }
 
-    public void addToCart(int goodsIndex) {
-        driver.findElements(ADD_TO_CART_BTN).get(goodsIndex).click();
+    public void addToCart(int productIndex) {
+        driver.findElements(ADD_TO_CART_BTN).get(productIndex).click();
+    }
+
+    public void addProductsToCart(int productNumber) {
+        for (int i = 0; i < productNumber; i++) {
+            this.addToCart(0);
+        }
     }
 
     public String getNumberCart() {
         return wait.until(
                 ExpectedConditions.visibilityOfElementLocated(CART_BADGE)).getText();
+    }
+
+    public void openCart() {
+        driver.findElement(CART_LINK).click();
     }
 }

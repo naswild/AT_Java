@@ -3,6 +3,7 @@ package swaglabs.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import swaglabs.user.User;
 
 public class LoginPage extends BasePage {
 
@@ -23,9 +24,9 @@ public class LoginPage extends BasePage {
         driver.get(BASE_URL + path);
     }
 
-    public void login(String username, String password) {
-        fillUsernameField(username);
-        fillPasswordField(password);
+    public void login(User user) {
+        fillUsernameField(user.getUsername());
+        fillPasswordField(user.getPassword());
         clickSubmit();
     }
 

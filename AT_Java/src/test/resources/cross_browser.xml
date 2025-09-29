@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="AT_Java" parallel="classes">
+    <test name="Chrome">
+        <classes>
+            <class name="swaglabs.tests.LoginTest"/>
+            <parameter name="browser" value="chrome"></parameter>
+        </classes>
+    </test>
+    <test name="Firefox">
+        <classes>
+            <class name="swaglabs.tests.AddProductsToCartTest"/>
+            <parameter name="browser" value="Firefox"></parameter>
+        </classes>
+    </test>
+</suite>

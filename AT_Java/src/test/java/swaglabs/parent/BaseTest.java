@@ -11,7 +11,7 @@ import org.testng.annotations.*;
 import swaglabs.pages.CartPage;
 import swaglabs.pages.LoginPage;
 import swaglabs.pages.ProductsPage;
-import swaglabs.utils.PropertyConstants;
+import swaglabs.utils.PropertyEnum;
 import swaglabs.utils.PropertyReader;
 import swaglabs.utils.TestListener;
 
@@ -44,8 +44,8 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
-        user = PropertyReader.getProperty(PropertyConstants.STANDARD_USER);
-        password = PropertyReader.getProperty(PropertyConstants.PASSWORD);
+        user = PropertyReader.getProperty(PropertyEnum.STANDARD_USER.getValue());
+        password = PropertyReader.getProperty(PropertyEnum.PASSWORD.getValue());
     }
 
     @Step("Close browser")

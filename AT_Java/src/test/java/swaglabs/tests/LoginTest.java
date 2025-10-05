@@ -1,11 +1,13 @@
 package swaglabs.tests;
 
+import enums.PageTitles;
 import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import swaglabs.parent.BaseTest;
 import swaglabs.user.User;
 
+import static enums.PageTitles.PRODUCTS;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertEquals;
 import static swaglabs.user.UserFactory.withClientPermission;
@@ -22,7 +24,7 @@ public class LoginTest extends BaseTest {
         loginPage.open();
         loginPage.login(withClientPermission());
         assertTrue(productsPage.isTitlePresent());
-        assertEquals(productsPage.getTitle(), "Products",
+        assertEquals(productsPage.getTitle(), PRODUCTS.getDisplayName(),
                 "Title doesn't match expected value");
     }
 

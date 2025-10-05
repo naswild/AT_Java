@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import swaglabs.parent.BaseTest;
 
+import static enums.PageTitles.CARTS;
 import static org.testng.Assert.assertEquals;
 import static swaglabs.user.UserFactory.withClientPermission;
 
@@ -39,6 +40,7 @@ public class AddProductsToCartTest extends BaseTest {
         loginPage.login(withClientPermission());
         productsPage.addProductsToCart(productsNumber);
         productsPage.openCart();
+        assertEquals(CARTS.getDisplayName(), cartPage.getCartTitleText());
         assertEquals(cartPage.getProductsNames().size(), productsNumber);
     }
 }
